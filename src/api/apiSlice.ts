@@ -10,7 +10,7 @@ const baseQuery = fetchBaseQuery({
   baseUrl: '/api',
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
-    const token = getState().user.token?.access_token;
+    const token = getState()?.user?.token?.access_token;
 
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
@@ -81,12 +81,6 @@ export const apiSlice = createApi({
         method: 'GET',
       }),
     }),
-    fetchAvatar: builder.query({
-      query: (avatar_id: string) => ({
-        url: `/users/get-avatar/${avatar_id}`,
-        responseHandler: (response) => response.blob(),
-      }),
-    }),
   }),
 });
 
@@ -97,5 +91,4 @@ export const {
   useUpdateProfileMutation,
   useGetCurrentUserQuery,
   useGetUserDataByUsernameQuery,
-  useFetchAvatarQuery,
 } = apiSlice;

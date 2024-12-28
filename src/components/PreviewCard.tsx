@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
 import { UserType } from '../types';
-import { useFetchAvatarQuery } from '../api/apiSlice';
 import { LinkItem } from '.';
 
 interface PreviewCardProps {
@@ -9,28 +6,16 @@ interface PreviewCardProps {
 }
 
 const PreviewCard: React.FC<PreviewCardProps> = ({ userData }) => {
-  const [avatarUrl, setAvatarUrl] = useState('');
-
   const avatarId = userData?.avatar_id || '';
-
-  const { data: avatarBlob, isLoading } = useFetchAvatarQuery(avatarId, {
-    skip: !avatarId,
-  });
-
-  useEffect(() => {
-    if (avatarBlob) {
-      setAvatarUrl(URL.createObjectURL(avatarBlob ?? ''));
-    }
-  }, [avatarBlob]);
 
   return (
     <div className='w-full max-w-[480px] mx-auto'>
       <div className='bg-primary h-[240px] rounded-t-3xl relative'>
         <div className='absolute left-1/2 -translate-x-1/2 -bottom-20'>
-          {userData?.avatar_id && !isLoading ? (
+          {userData?.avatar_id ? (
             <div className='w-24 h-24 mb-6'>
               <img
-                src={avatarUrl}
+                src={`${import.meta.env.VITE_API}images/${avatarId}`}
                 alt='User Avatar'
                 className='w-24 h-24 rounded-full'
               />

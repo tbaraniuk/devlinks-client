@@ -37,11 +37,13 @@ const Register: React.FC = () => {
       password: password,
     });
 
-    if (userData.data.token) {
+    if (userData?.data?.token) {
       dispatch(setCredentials(userData.data));
       navigate('/');
     } else if (isUserRegisterError) {
       toast.error('An error occurred while registering, please try again!');
+    } else {
+      toast.error('It seems that error happened, please try again!');
     }
   };
 
@@ -109,7 +111,7 @@ const Register: React.FC = () => {
             {isUserRegisterLoading ? (
               <Loader2 className='animate-spin mx-auto' />
             ) : (
-              'Login'
+              'Sign Up'
             )}
           </Button>
         </form>
