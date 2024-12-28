@@ -13,11 +13,11 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ userData }) => {
       <div className='bg-primary h-[240px] rounded-t-3xl relative'>
         <div className='absolute left-1/2 -translate-x-1/2 -bottom-20'>
           {userData?.avatar_id ? (
-            <div className='w-24 h-24 mb-6'>
+            <div className='w-32 h-32 mb-6'>
               <img
                 src={`${import.meta.env.VITE_API}images/${avatarId}`}
                 alt='User Avatar'
-                className='w-24 h-24 rounded-full'
+                className='w-32 h-32 rounded-full'
               />
             </div>
           ) : null}
